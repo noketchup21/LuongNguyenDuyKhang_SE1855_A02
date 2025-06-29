@@ -1,0 +1,9 @@
+﻿<Application x:Class="LuongNguyenDuyKhang_SE1855_A02.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LuongNguyenDuyKhang_SE1855_A02"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,48 @@
+﻿<Window x:Class="WpfApp.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f5f5">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Role Selection -->
+        <CheckBox x:Name="chkIsCustomer" Content="Login as Customer" 
+                  FontWeight="Bold" Margin="0,0,0,20"
+                  Checked="chkIsCustomer_Checked" Unchecked="chkIsCustomer_Unchecked"/>
+
+        <!-- Username -->
+        <StackPanel x:Name="stackUsername" Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="Username:" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtUsername" Width="280" Height="30"/>
+        </StackPanel>
+
+        <!-- Password -->
+        <StackPanel x:Name="stackPassword" Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="Password:" FontWeight="SemiBold"/>
+            <PasswordBox x:Name="txtPassword" Width="280" Height="30"/>
+        </StackPanel>
+
+        <!-- Phone Number -->
+        <StackPanel x:Name="stackPhone" Grid.Row="3" Margin="0,0,0,10" Visibility="Collapsed">
+            <TextBlock Text="Phone Number:" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtPhone" Width="280" Height="30"/>
+        </StackPanel>
+
+        <!-- Login Button -->
+        <Button Grid.Row="4" Content="Login" Width="100" Height="35"
+                Background="#0078D7" Foreground="White" FontWeight="Bold"
+                HorizontalAlignment="Center" Click="LoginButton_Click"/>
+    </Grid>
+</Window>

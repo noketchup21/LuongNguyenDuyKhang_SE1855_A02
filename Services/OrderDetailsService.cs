@@ -11,10 +11,11 @@ namespace Services
 {
     public class OrderDetailsService : IOrderDetailsService
     {
-        private static OrderDetailsService instance;
-        public static OrderDetailsService Instance => instance ??= new OrderDetailsService();
-
-        private OrderDetailsRepository _orderDetailsRepository = OrderDetailsRepository.Instance;
+        IOrderDetailsRepository _orderDetailsRepository;
+        public OrderDetailsService()
+        {
+            _orderDetailsRepository = new OrderDetailsRepository();
+        }
         public void AddOrderDetails(OrderDetail orderDetails)
         {
             _orderDetailsRepository.AddOrderDetails(orderDetails);

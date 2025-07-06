@@ -10,10 +10,7 @@ namespace Repositories
 {
     public class CustomersRepository : ICustomersRepository
     {
-        private static CustomersRepository instance;
-        public static CustomersRepository Instance => instance ??= new CustomersRepository();
-
-        private CustomersDAO customersDAO = CustomersDAO.Instance;
+        CustomersDAO customersDAO = new CustomersDAO(); 
         public void AddCustomer(Customer customer)
         {
             customersDAO.AddCustomer(customer);

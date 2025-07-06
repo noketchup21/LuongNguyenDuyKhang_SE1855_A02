@@ -8,25 +8,25 @@ namespace DataAccessLayer
 {
     public class EmployeesDAO
     {
-        private static EmployeesDAO instance;
-        public static EmployeesDAO Instance => instance ??= new EmployeesDAO();
+        LucySalesDataContext context = new LucySalesDataContext();
         List<Employee> employees = new List<Employee>();
 
 
         public List<Employee> GetAllEmployees()
         {
-            return employees;
+            return context.Employees.ToList();
         }
         public void AddEmployee(Employee employee)
         {
-            if (employee != null && !employees.Any(e => e.EmployeeId == employee.EmployeeId))
+            if (employee != null)
             {
-                employees.Add(employee);
+                context.Employees.Add(employee);
+                context.SaveChanges();
             }
         }
         public void UpdateEmployee(Employee employee)
         {
-            Employee existingEmployee = employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            Employee existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
             if (existingEmployee != null)
             {
                 existingEmployee.Name = employee.Name;
@@ -36,15 +36,18 @@ namespace DataAccessLayer
                 existingEmployee.BirthDate = employee.BirthDate;
                 existingEmployee.HireDate = employee.HireDate;
                 existingEmployee.Address = employee.Address;
+                context.SaveChanges();
             }
         }
         public void DeleteEmployee(int employeeId)
         {
-            Employee existingEmployee = employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-            if (existingEmployee != null)
+            Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            if (employee != null)
             {
-                employees.Remove(existingEmployee);
+                context.Employees.Remove(employee);
+                context.SaveChanges();
             }
         }
+
     }
 }

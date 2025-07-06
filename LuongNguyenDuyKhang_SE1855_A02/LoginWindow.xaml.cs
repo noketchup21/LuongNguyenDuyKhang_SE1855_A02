@@ -23,19 +23,20 @@ namespace WpfApp
     /// </summary>
     public partial class LoginWindow : Window
     {
-        EmployeesService employeeService = new EmployeesService();
+        IEmployeesService employeeService = new EmployeesService();
+        ICustomersService customersService = new CustomersService();
+
         public LoginWindow()
         {
             InitializeComponent();
-//            employeeService.GenerateSampleData();
-//            CustomersService.Instance.GenerateSampleData();
         }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             if (chkIsCustomer.IsChecked == true)
             {
                 string phone = txtPhone.Text.Trim();
-                var customer = CustomersService.Instance.GetAllCustomers()
+                var customer = customersService.GetAllCustomers()
                     .FirstOrDefault(c => c.Phone == phone);
 
                 if (customer != null)
@@ -53,7 +54,8 @@ namespace WpfApp
             {
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Password.Trim();
-                var employee = EmployeesService.Instance.GetAllEmployees()
+
+                var employee = employeeService.GetAllEmployees()
                     .FirstOrDefault(e => e.UserName == username && e.Password == password);
 
                 if (employee != null)
@@ -68,6 +70,7 @@ namespace WpfApp
                 }
             }
         }
+
         private void chkIsCustomer_Checked(object sender, RoutedEventArgs e)
         {
             stackUsername.Visibility = Visibility.Collapsed;

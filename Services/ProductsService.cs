@@ -11,13 +11,12 @@ namespace Services
 {
     public class ProductsService : IProductsService
     {
-        private static ProductsService instance;
-        public static ProductsService Instance => instance ??= new ProductsService();
-
-        private ProductsRepository _productsRepository = ProductsRepository.Instance;
+        IProductsRepository _productsRepository;
         public ProductsService()
         {
+            _productsRepository = new ProductsRepository();
         }
+
         public void AddProduct(Product product)
         {
             _productsRepository.AddProduct(product);

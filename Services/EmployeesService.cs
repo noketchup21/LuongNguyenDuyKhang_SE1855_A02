@@ -11,12 +11,10 @@ namespace Services
 {
     public class EmployeesService : IEmployeesService
     {
-        private static EmployeesService instance;
-        public static EmployeesService Instance => instance ??= new EmployeesService();
-
-        private readonly EmployeesRepository _employeesRepository = EmployeesRepository.Instance;
+        IEmployeesRepository _employeesRepository;
         public EmployeesService()
         {
+            _employeesRepository = new EmployeesRepository();
         }
         public void AddEmployee(Employee employee)
         {

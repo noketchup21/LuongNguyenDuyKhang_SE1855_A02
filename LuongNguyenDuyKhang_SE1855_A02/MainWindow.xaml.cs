@@ -28,20 +28,20 @@ namespace WpfApp
 
        private void ManageProducts_Click(object sender, RoutedEventArgs e)
         {
-//            var productWindow = new ProductsWindow();
-//            productWindow.ShowDialog();
+            var productWindow = new ProductsWindow();
+            productWindow.ShowDialog();
         }
 
         private void ManageOrders_Click(object sender, RoutedEventArgs e)
         {
-//            var orderWindow = new OrdersWindow();
-//            orderWindow.ShowDialog();
+            var orderWindow = new OrdersWindow();
+            orderWindow.ShowDialog();
         }
 
         private void ViewReports_Click(object sender, RoutedEventArgs e)
         {
-//           var reportWindow = new ReportsWindow();
- //           reportWindow.ShowDialog();
+           var reportWindow = new ReportsWindow();
+           reportWindow.ShowDialog();
         }
     }
 }

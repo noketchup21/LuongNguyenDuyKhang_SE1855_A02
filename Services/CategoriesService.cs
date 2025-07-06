@@ -8,12 +8,13 @@ using Services;
 
 namespace Repositories
 {
-    public class CategoriesService : ICategoriesRepository
+    public class CategoriesService : ICategoriesService
     {
-        private static CategoriesService instance;
-        public static CategoriesService Instance => instance ??= new CategoriesService();
-
-        private CategoriesRepository _categoriesRepository = CategoriesRepository.Instance;
+        ICategoriesRepository _categoriesRepository;
+        public CategoriesService(ICategoriesRepository categoriesRepository)
+        {
+            _categoriesRepository = categoriesRepository;
+        }
         public void AddCategory(Category category)
         {
             _categoriesRepository.AddCategory(category);

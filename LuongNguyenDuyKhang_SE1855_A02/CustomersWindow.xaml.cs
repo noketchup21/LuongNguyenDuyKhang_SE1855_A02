@@ -22,7 +22,7 @@ namespace WpfApp
     /// </summary>
     public partial class CustomersWindow : Window
     {
-        private readonly CustomersService customersService = CustomersService.Instance;
+        private readonly ICustomersService customersService = new CustomersService();
         private List<Customer> allCustomers;
 
         public CustomersWindow()
@@ -44,7 +44,6 @@ namespace WpfApp
             if (addWindow.ShowDialog() == true)
             {
                 var newCustomer = addWindow.Customer;
-                newCustomer.CustomerId = GetNextCustomerId();
                 customersService.AddCustomer(newCustomer);
                 LoadData();
             }
@@ -75,16 +74,17 @@ namespace WpfApp
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    customersService.DeleteCustomer(selected.CustomerId);
-                    LoadData();
+                    try
+                    {
+                        customersService.DeleteCustomer(selected.CustomerId);
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
                 }
             }
-        }
-
-        private int GetNextCustomerId()
-        {
-            var all = customersService.GetAllCustomers();
-            return all.Count > 0 ? all.Max(c => c.CustomerId) + 1 : 1;
         }
 
         private void SearchCustomer(string keyword)

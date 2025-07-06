@@ -10,10 +10,7 @@ namespace Repositories
 {
     public class CategoriesRepository : ICategoriesRepository
     {
-        private static CategoriesRepository instance;
-        public static CategoriesRepository Instance => instance ??= new CategoriesRepository();
-
-        private CategoriesDAO categoriesDAO = CategoriesDAO.Instance;
+        CategoriesDAO categoriesDAO = new CategoriesDAO();
         public void AddCategory(Category category)
         {
             categoriesDAO.AddCategory(category);

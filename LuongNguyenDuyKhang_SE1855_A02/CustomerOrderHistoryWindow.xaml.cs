@@ -21,10 +21,11 @@ namespace WpfApp
     /// </summary>
     public partial class CustomerOrderHistoryWindow : Window
     {
+        private readonly IOrdersService OrdersService;
         public CustomerOrderHistoryWindow(Customer customer)
         {
             InitializeComponent();
-            var orders = OrdersService.Instance.GetAllOrders()
+            var orders = OrdersService.GetAllOrders()
                 .Where(o => o.CustomerId == customer.CustomerId)
                 .OrderByDescending(o => o.OrderDate)
                 .ToList();

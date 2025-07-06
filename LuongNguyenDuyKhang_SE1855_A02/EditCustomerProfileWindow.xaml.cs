@@ -21,6 +21,7 @@ namespace WpfApp
     /// </summary>
     public partial class EditCustomerProfileWindow : Window
     {
+        ICustomersService customerService = new CustomersService();
         private Customer customer;
 
         public EditCustomerProfileWindow(Customer customer)
@@ -37,7 +38,7 @@ namespace WpfApp
             customer.ContactName = txtName.Text.Trim();
             customer.Phone = txtPhone.Text.Trim();
             customer.Address = txtAddress.Text.Trim();
-            CustomersService.Instance.UpdateCustomer(customer);
+            customerService.UpdateCustomer(customer);
             DialogResult = true;
             Close();
         }

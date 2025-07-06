@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp.ReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="ReportsWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Order Report" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Filters -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Start Date:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker x:Name="dpStartDate" Width="120" Margin="0,0,10,0"/>
+            <TextBlock Text="End Date:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker x:Name="dpEndDate" Width="120" Margin="0,0,10,0"/>
+            <Button Content="Search" Width="80" Click="Search_Click"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="dgOrders" Grid.Row="2" AutoGenerateColumns="True" IsReadOnly="True" />
+
+        <!-- Back Button -->
+        <Button Content="Back" Grid.Row="3" Width="80" HorizontalAlignment="Right" Margin="0,10,0,0" Click="Back_Click"/>
+    </Grid>
+</Window>

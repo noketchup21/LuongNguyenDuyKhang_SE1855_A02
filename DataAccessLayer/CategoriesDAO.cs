@@ -9,19 +9,19 @@ namespace DataAccessLayer
 {
     public class CategoriesDAO
     {
-        private static CategoriesDAO instance;
-        public static CategoriesDAO Instance => instance ??= new CategoriesDAO();
+        LucySalesDataContext context = new LucySalesDataContext();
 
         List<Category> categories = new List<Category>();
         public List<Category> GetAllCategories()
         {
-            return categories;
+            return context.Categories.ToList();
         }
         public void AddCategory(Category category)
         {
             if (category != null && !categories.Any(c => c.CategoryId == category.CategoryId))
             {
-                categories.Add(category);
+                context.Add(category);
+                context.SaveChanges();
             }
         }
         public void UpdateCategory(Category category)
@@ -31,6 +31,7 @@ namespace DataAccessLayer
             {
                 existingCategory.CategoryName = category.CategoryName;
                 existingCategory.Description = category.Description;
+                context.SaveChanges();
             }
         }
         public void DeleteCategory(int categoryId)
@@ -38,7 +39,8 @@ namespace DataAccessLayer
             Category existingCategory = categories.FirstOrDefault(c => c.CategoryId == categoryId);
             if (existingCategory != null)
             {
-                categories.Remove(existingCategory);
+                context.Remove(existingCategory);
+                context.SaveChanges();
             }
         }
     }

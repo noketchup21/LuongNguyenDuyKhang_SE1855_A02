@@ -10,10 +10,7 @@ namespace Repositories
 {
     public class OrdersRepository : IOrdersRepository
     {
-        private static OrdersRepository instance;
-        public static OrdersRepository Instance => instance ??= new OrdersRepository();
-
-        private OrdersDAO ordersDAO = OrdersDAO.Instance;
+        OrdersDAO ordersDAO = new OrdersDAO();
         public void AddOrder(Order order)
         {
             ordersDAO.AddOrder(order);

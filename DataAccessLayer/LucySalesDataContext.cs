@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer;
 
@@ -20,7 +19,7 @@ public partial class LucySalesDataContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
-    public virtual DbSet<DataTrainTest> DataTrainTests { get; set; }
+//    public virtual DbSet<DataTrainTest> DataTrainTests { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -29,22 +28,10 @@ public partial class LucySalesDataContext : DbContext
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
-    private string GetConnectionString()
-    {
-        IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .Build();
 
-        return configuration.GetConnectionString("DefaultConnectionString");
-    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(GetConnectionString());
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-JUBLI2B6\\SQLEXPRESS;Database=Lucy_SalesData;uid=SA;pwd=12345;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -70,7 +57,7 @@ public partial class LucySalesDataContext : DbContext
             entity.Property(e => e.Phone).HasMaxLength(24);
         });
 
-        modelBuilder.Entity<DataTrainTest>(entity =>
+/*        modelBuilder.Entity<DataTrainTest>(entity =>
         {
             entity
                 .HasNoKey()
@@ -78,7 +65,7 @@ public partial class LucySalesDataContext : DbContext
 
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-        });
+        });*/
 
         modelBuilder.Entity<Employee>(entity =>
         {

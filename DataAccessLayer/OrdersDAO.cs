@@ -9,19 +9,19 @@ namespace DataAccessLayer
 {
     public class OrdersDAO
     {
-        private static OrdersDAO instance;
-        public static OrdersDAO Instance => instance ??= new OrdersDAO();
+        LucySalesDataContext context = new LucySalesDataContext();
         List<Order> orders = new List<Order>();
 
         public List<Order> GetAllOrders()
         {
-            return orders;
+            return context.Orders.ToList();
         }
         public void AddOrder(Order order)
         {
             if (order != null && !orders.Any(o => o.OrderId == order.OrderId))
             {
-                orders.Add(order);
+                context.Add(order);
+                context.SaveChanges();
             }
         }
         public void UpdateOrder(Order order)
@@ -32,6 +32,7 @@ namespace DataAccessLayer
                 existingOrder.CustomerId = order.CustomerId;
                 existingOrder.EmployeeId = order.EmployeeId;
                 existingOrder.OrderDate = order.OrderDate;
+                context.SaveChanges();
             }
         }
         public void DeleteOrder(int orderId)
@@ -39,7 +40,8 @@ namespace DataAccessLayer
             Order existingOrder = orders.FirstOrDefault(o => o.OrderId == orderId);
             if (existingOrder != null)
             {
-                orders.Remove(existingOrder);
+                context.Remove(existingOrder);
+                context.SaveChanges();
             }
         }
     }

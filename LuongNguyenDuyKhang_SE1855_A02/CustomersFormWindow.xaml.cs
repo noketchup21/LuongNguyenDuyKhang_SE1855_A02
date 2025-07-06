@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using DataAccessLayer;
+using Services;
 
 namespace WpfApp
 {
@@ -21,6 +22,7 @@ namespace WpfApp
     /// </summary>
     public partial class CustomersFormWindow : Window
     {
+        ICustomersService customersService = new CustomersService();
         public Customer Customer { get; private set; }
         public CustomersFormWindow()
         {
@@ -30,15 +32,7 @@ namespace WpfApp
         public CustomersFormWindow(Customer existingCustomer)
         {
             InitializeComponent();
-            Customer = new Customer
-            {
-                CustomerId = existingCustomer.CustomerId,
-                CompanyName = existingCustomer.CompanyName,
-                ContactName = existingCustomer.ContactName,
-                ContactTitle = existingCustomer.ContactTitle,
-                Address = existingCustomer.Address,
-                Phone = existingCustomer.Phone
-            };
+            Customer = existingCustomer;
 
             txtCompanyName.Text = Customer.CompanyName;
             txtContactName.Text = Customer.ContactName;

@@ -10,10 +10,7 @@ namespace Repositories
 {
     public class ProductsRepository : IProductsRepository
     {
-        private static ProductsRepository instance;
-        public static ProductsRepository Instance => instance ??= new ProductsRepository();
-
-        private ProductsDAO productsDAO = ProductsDAO.Instance;
+        ProductsDAO productsDAO = new ProductsDAO();
         public void AddProduct(Product product)
         {
             productsDAO.AddProduct(product);

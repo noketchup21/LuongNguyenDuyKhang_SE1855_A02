@@ -10,10 +10,7 @@ namespace Repositories
 {
     public class EmployeesRepository : IEmployeesRepository
     {
-        private static EmployeesRepository instance;
-        public static EmployeesRepository Instance => instance ??= new EmployeesRepository();
-
-        private EmployeesDAO employeesDAO = EmployeesDAO.Instance;
+        EmployeesDAO employeesDAO = new EmployeesDAO();
         public void AddEmployee(Employee employee)
         {
             employeesDAO.AddEmployee(employee);

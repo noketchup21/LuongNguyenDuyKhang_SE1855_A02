@@ -10,12 +10,10 @@ namespace Services
 {
     public class CustomersService : ICustomersService
     {
-        private static CustomersService instance;
-        public static CustomersService Instance => instance ??= new CustomersService();
-
-        private CustomersRepository _customersRepository = CustomersRepository.Instance;
+        ICustomersRepository _customersRepository;
         public CustomersService()
         {
+            _customersRepository = new CustomersRepository();
         }
         public void AddCustomer(Customer customer)
         {

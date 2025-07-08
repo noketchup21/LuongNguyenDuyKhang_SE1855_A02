@@ -20,8 +20,10 @@
                     Click="ManageProducts_Click"/>
             <Button Content="Create/View Orders" Width="200" Height="40" Margin="0,0,0,10"
                     Click="ManageOrders_Click"/>
-            <Button Content="View Reports" Width="200" Height="40"
+            <Button Content="View Reports" Width="200" Height="40" Margin="0,0,0,10"
                     Click="ViewReports_Click"/>
+            <Button Content="Personal Information" Width="200" Height="40"
+                    Click="PersonalInformation_Click"/>
         </StackPanel>
     </Grid>
 </Window>

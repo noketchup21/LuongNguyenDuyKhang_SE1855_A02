@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataAccessLayer;
+using LuongNguyenDuyKhangWPF;
 
 namespace WpfApp
 {
@@ -16,9 +18,11 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly Employee currentLoggedInEmployee;
+        public MainWindow(Employee loggedInEmployee)
         {
             InitializeComponent();
+            currentLoggedInEmployee = loggedInEmployee;
         }
         private void ManageCustomers_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +46,11 @@ namespace WpfApp
         {
            var reportWindow = new ReportsWindow();
            reportWindow.ShowDialog();
+        }
+        private void PersonalInformation_Click(object sender, RoutedEventArgs e)
+        {
+            var personalizationWindow = new PersonalInformationEmployeeWindow(currentLoggedInEmployee);
+            personalizationWindow.ShowDialog();
         }
     }
 }

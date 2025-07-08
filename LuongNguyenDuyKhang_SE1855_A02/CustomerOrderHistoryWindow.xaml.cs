@@ -21,7 +21,7 @@ namespace WpfApp
     /// </summary>
     public partial class CustomerOrderHistoryWindow : Window
     {
-        private readonly IOrdersService OrdersService;
+        IOrdersService OrdersService = new OrdersService();
         public CustomerOrderHistoryWindow(Customer customer)
         {
             InitializeComponent();

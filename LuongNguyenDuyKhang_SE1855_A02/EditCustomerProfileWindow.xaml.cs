@@ -31,6 +31,8 @@ namespace WpfApp
             txtName.Text = customer.ContactName;
             txtPhone.Text = customer.Phone;
             txtAddress.Text = customer.Address;
+            txtCompanyName.Text = customer.CompanyName;
+            txtContactTitle.Text = customer.ContactTitle;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -38,6 +40,8 @@ namespace WpfApp
             customer.ContactName = txtName.Text.Trim();
             customer.Phone = txtPhone.Text.Trim();
             customer.Address = txtAddress.Text.Trim();
+            customer.CompanyName = txtCompanyName.Text.Trim();
+            customer.ContactTitle = txtContactTitle.Text.Trim();
             customerService.UpdateCustomer(customer);
             DialogResult = true;
             Close();

@@ -61,7 +61,7 @@ namespace WpfApp
                 if (employee != null)
                 {
                     MessageBox.Show("Employee login successful!", "Success");
-                    new MainWindow().Show();
+                    new MainWindow(employee).Show();
                     Close();
                 }
                 else

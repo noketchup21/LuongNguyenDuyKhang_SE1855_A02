@@ -37,11 +37,11 @@ namespace WpfApp
 
         private void btnEditProfile_Click(object sender, RoutedEventArgs e)
         {
-/*            var profileWindow = new EditCustomerProfileWindow(loggedInCustomer);
+            var profileWindow = new EditCustomerProfileWindow(loggedInCustomer);
             if (profileWindow.ShowDialog() == true)
             {
                 MessageBox.Show("Profile updated successfully.");
-            }*/
+            }
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
